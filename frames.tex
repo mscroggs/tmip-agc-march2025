@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage[left=0pt,right=0pt,top=0pt,bottom=0pt,
+    paperwidth=12cm,paperheight=3cm]{geometry}
+\usepackage{tikz}
+\usepackage{ifthen}
+
+\newcommand{\aframe}[1]{ %inputs: ANGLE
+\noindent\begin{tikzpicture}[line width=1pt,line cap=round,line join=round]
+\clip (-1.5,-1.5) rectangle +(12,3);
+\draw[dashed,line width=0.8pt,gray]
+    ({1.4*cos(#1)},{1.4*sin(#1)})
+    -- (1.6+1.4*#1*pi/180,{1.4*sin(#1)})
+    -- (1.6+1.4*#1*pi/180,0);
+\draw (0.4,0) arc (0:#1:0.4);
+\draw[dashed] (0,0) -- (1.4,0);
+\draw (0,0) -- ({1.4*cos(#1)},{1.4*sin(#1)});
+\draw (0,0) circle (1.4);
+\fill (0,0) circle (0.05);
+\fill ({1.4*cos(#1)},{1.4*sin(#1)}) circle (0.05);
+
+\fill (1.6+1.4*#1*pi/180,0) circle (0.05);
+\fill[red] (1.6+1.4*#1*pi/180,{1.4*sin(#1)}) circle (0.05);
+
+\draw[red] plot[variable=\x,domain=0:#1,samples=100]
+    (1.6+1.4*\x*pi/180,{1.4*sin(\x)});
+
+\end{tikzpicture}
+}
+
+\newcounter{animation}
+\newcommand{\animation}{
+\aframe{4*\theanimation}\ifthenelse{\equal{\theanimation}{90}}{}{
+
+\stepcounter{animation}
+\animation
+}
+}
+
+\begin{document}
+
+\animation
+
+\end{document}

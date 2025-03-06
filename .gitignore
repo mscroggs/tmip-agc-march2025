@@ -1,0 +1,7 @@
+*.pyc
+*.aux
+*.log
+*.pdf
+*.png
+*.mp4
+!video.mp4
