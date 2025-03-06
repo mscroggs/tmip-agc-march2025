@@ -5,4 +5,4 @@ This repo contains the code I wrote to make the first animation for the
 
 This is the result:
 
-<video src="video.mp4" width="284" height="70" controls></video>
+<video src="https://github.com/mscroggs/tmip-agc-march2025/raw/refs/heads/main/video.mp4" width="284" height="70" controls></video>
