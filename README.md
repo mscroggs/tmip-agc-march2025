@@ -1,8 +1,9 @@
-# TMiP Animation Generation Collaboration: March 2025
+# TMiP Animation Generation Collaboration
 
-This repo contains the code I wrote to make the first animation for the
+This repo contains the code I have written to make animations for the
 [TMiP Animation Generation Collaboration](https://talkingmathsinpublic.uk/animation/).
 
-This is the result:
+Here are animations I've made:
 
-![Animation](video.gif)
+## March 2025
+![Animation](2025-03/video.gif)
