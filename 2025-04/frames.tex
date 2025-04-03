@@ -1,0 +1,106 @@
+\documentclass{article}
+\usepackage[top=0mm,bottom=0mm,left=0mm,right=0mm,
+            paperwidth=4.5cm,paperheight=4.1cm]{geometry}
+\usepackage{tikz}
+\usepackage{ifthen}
+
+\newcommand{\drawframe}[1]{
+\noindent\begin{tikzpicture}[line width=1pt,line cap=round,line join=round,
+    x={(0.866cm,-0.5cm)}, y={(0.866cm,0.5cm)}, z={(0cm,1cm)}]
+\clip (-1.8cm,-1.2cm) rectangle (2.7cm,2.9cm);
+% angle #1
+\draw[fill=white] (0,0,0) -- (1,0,0) -- (1,1,0) -- (0,1,0) -- cycle;
+\draw[fill=white] (0,0,0) -- ({-2*cos(#1)},0,{2*sin(#1)}) -- ({-2*cos(#1)},1,{2*sin(#1)}) -- (0,1,0) -- cycle;
+\draw[fill=white] ({-cos(#1)},0,{sin(#1)}) -- ({-cos(#1)},1,{sin(#1)}) -- cycle;
+\draw[fill=white] (0,1,0) -- (0,{1+cos(#1)},{sin(#1)}) -- (1,{1+cos(#1)},{sin(#1)}) -- (1,1,0) -- cycle;
+\draw[fill=white] (1,1,0) -- ({1+cos(#1)},1,{sin(#1)}) -- ({1+cos(#1)},0,{sin(#1)}) -- (1,0,0) -- cycle;
+\draw[fill=white] (1,0,0) -- (1,{-cos(#1)},{sin(#1)}) -- (0,{-cos(#1)},{sin(#1)}) -- (0,0,0) -- cycle;
+\end{tikzpicture}
+}
+\newcommand{\drawanotherframe}[1]{
+\noindent\begin{tikzpicture}[line width=1pt,line cap=round,line join=round,
+    x={(0.866cm,-0.5cm)}, y={(0.866cm,0.5cm)}, z={(0cm,1cm)}]
+\clip (-1.8cm,-1.2cm) rectangle (2.7cm,2.9cm);
+% angle #1
+\draw
+    (0,0,0) -- (1,0,0) -- (1,1,0) -- (1,1,1) -- (1,0,1) -- (0,0,1) -- cycle
+    (1,0,0) -- (1,0,1)
+    (0,1,0) -- (0,1,1)
+    (0,0,1) -- (0,1,1) -- (1,1,1)
+;
+\draw[fill=white] (0,0,1) -- ({sin(#1)},0,{1+cos(#1)}) -- ({sin(#1)},1,{1+cos(#1)}) -- (0,1,1) -- cycle;
+\end{tikzpicture}
+}
+
+\newcounter{animation}
+\newcommand{\animation}{
+\drawframe{4.5*\theanimation}\ifthenelse{\equal{\theanimation}{19}}{}{
+
+\stepcounter{animation}
+\animation
+}
+}
+
+\newcounter{animationtwo}
+\newcommand{\animationtwo}{
+\drawanotherframe{4.5*\theanimationtwo}\ifthenelse{\equal{\theanimationtwo}{19}}{}{
+
+\stepcounter{animationtwo}
+\animationtwo
+}
+}
+
+\newcounter{animationthree}
+\newcommand{\animationthree}{
+\drawanotherframe{90-4.5*\theanimationthree}\ifthenelse{\equal{\theanimationthree}{19}}{}{
+
+\stepcounter{animationthree}
+\animationthree
+}
+}
+
+\newcounter{animationfour}
+\newcommand{\animationfour}{
+\drawframe{90-4.5*\theanimationfour}\ifthenelse{\equal{\theanimationfour}{19}}{}{
+
+\stepcounter{animationfour}
+\animationfour
+}
+}
+
+
+
+\begin{document}
+\animation
+
+\animationtwo
+
+\drawanotherframe{90}
+
+\drawanotherframe{90}
+
+\drawanotherframe{90}
+
+\drawanotherframe{90}
+
+\drawanotherframe{90}
+
+\drawanotherframe{90}
+
+\animationthree
+
+\animationfour
+
+\drawframe{0}
+
+\drawframe{0}
+
+\drawframe{0}
+
+\drawframe{0}
+
+\drawframe{0}
+
+\drawframe{0}
+
+\end{document}
